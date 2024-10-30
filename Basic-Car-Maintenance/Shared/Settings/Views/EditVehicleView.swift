@@ -12,6 +12,9 @@ struct EditVehicleView: View, Observable {
     @Binding var selectedVehicle: Vehicle?
     var viewModel: SettingsViewModel
     
+    /// closure to update the values passed in, and set them to all the state properties
+    var onVehicleUpdated: ((Vehicle) -> Void)?
+    
     @Environment(\.dismiss) var dismiss
     
     @State private var name = ""
@@ -98,6 +101,9 @@ struct EditVehicleView: View, Observable {
                             vehicle.id = selectedVehicle.id
                             Task {
                                 await viewModel.updateVehicle(vehicle)
+                                if let onVehicleUpdated {
+                                    onVehicleUpdated(vehicle)
+                                }
                                 dismiss()
                             }
                         }
@@ -133,7 +139,7 @@ struct EditVehicleView: View, Observable {
         vin: "5YJSA1E26JF123456",
         licensePlateNumber: "ABC123"
     )
-    var viewModel = SettingsViewModel(authenticationViewModel: AuthenticationViewModel())
+    let viewModel = SettingsViewModel(authenticationViewModel: AuthenticationViewModel())
 
     EditVehicleView(selectedVehicle: $selectedVehicle, viewModel: viewModel)
     

@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@" : {
       "comment" : "Maintenance list item description 'Date' formatted",
       "localizations" : {
@@ -78,74 +81,8 @@
         }
       }
     },
-    "%@ on %@" : {
-      "comment" : "Maintenance list item for a vehicle on a date",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ on %2$@"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ در %2$@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ op %2$@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ z datą %2$@"
-          }
-        }
-      }
-    },
-    "%lld %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld %2$@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld %2$@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld %2$@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld %2$@"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld %2$@"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld %2$@"
-          }
-        }
-      }
+    "^[%lld contributions](inflect: true)" : {
+      "comment" : "the number of contributions by a contributor"
     },
     "🦄 Mikaela Caron - Maintainer" : {
       "comment" : "Link to maintainer Github account.",
@@ -2107,6 +2044,12 @@
         }
       }
     },
+    "Export" : {
+
+    },
+    "Export Event" : {
+      "comment" : "Label for exporting maintenance events"
+    },
     "Failed To Add Vehicle" : {
       "localizations" : {
         "be" : {
@@ -2769,76 +2712,8 @@
         }
       }
     },
-    "For %@" : {
-      "comment" : "Maintenance list item description 'For which vehicle'",
-      "localizations" : {
-        "be" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Для %@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Für %@"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "برای %@"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ के लिए"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "대상 차량: %@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voor %@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dla %@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Для %@"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "For %@"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Для %@"
-          }
-        }
-      }
+    "For: %@" : {
+      "comment" : "the vehcile name is filled in here"
     },
     "GitHub Repo" : {
       "comment" : "Link to the Basic Car Maintenance GitHub repo.",
@@ -2929,6 +2804,9 @@
         }
       }
     },
+    "Imperial" : {
+      "comment" : "Imperial unit system"
+    },
     "It's open source and anyone can contribute to it." : {
       "comment" : "Tells the user they can contribute to the codebase.",
       "localizations" : {
@@ -2975,6 +2853,9 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
     },
     "Kilometers" : {
       "localizations" : {
@@ -3308,6 +3189,19 @@
         }
       }
     },
+    "Metric" : {
+      "comment" : "Metric unit system"
+    },
+    "Mileage: %lld %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mileage: %1$lld %2$@"
+          }
+        }
+      }
+    },
     "Miles" : {
       "localizations" : {
         "de" : {
@@ -3625,6 +3519,9 @@
         }
       }
     },
+    "No Name" : {
+      "extractionState" : "manual"
+    },
     "No results" : {
       "localizations" : {
         "be" : {
@@ -3783,6 +3680,9 @@
           }
         }
       }
+    },
+    "Notes:" : {
+
     },
     "Odometer" : {
       "localizations" : {
@@ -4058,6 +3958,9 @@
         }
       }
     },
+    "Preferred System" : {
+
+    },
     "Preferred units" : {
       "comment" : "Label for units selected when adding an odometer reading",
       "localizations" : {
@@ -4257,6 +4160,9 @@
           }
         }
       }
+    },
+    "Recorded On: %@" : {
+
     },
     "Report a Bug" : {
       "comment" : "Link to report a bug",
@@ -4518,6 +4424,12 @@
         }
       }
     },
+    "Select a Vehicle" : {
+
+    },
+    "Select the vehicle you want to export the maintenance events for:" : {
+
+    },
     "Settings" : {
       "comment" : "Label to display settings.",
       "localizations" : {
@@ -4606,6 +4518,9 @@
           }
         }
       }
+    },
+    "Share" : {
+      "comment" : "Share the exported file in the share sheet"
     },
     "Sign Out" : {
       "localizations" : {
@@ -5382,6 +5297,9 @@
         }
       }
     },
+    "Units" : {
+      "comment" : "Label to represent the options for measurement units"
+    },
     "Update" : {
       "comment" : "Label for submit button on form to update an existing entry",
       "localizations" : {
@@ -5720,6 +5638,9 @@
           }
         }
       }
+    },
+    "Vehicle Details" : {
+      "comment" : "Label about vehicle details."
     },
     "Vehicle License Plate Number" : {
       "localizations" : {

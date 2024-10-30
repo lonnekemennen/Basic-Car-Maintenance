@@ -64,6 +64,7 @@ enum SFSymbol {
     // Navigation Items
     static let filter = "line.3.horizontal.decrease.circle"
     static let plus = "plus"
+    static let share = "square.and.arrow.up"
     
     // Dashboard
     static let trash = "trash"
@@ -84,6 +85,10 @@ enum SFSymbol {
     // ContributorsProfileView
     static let personCircle = "person.circle.fill"
   
+}
+
+enum AppStorageKeys {
+    static let measurementSystem = "defaultMeasurementSystem"
 }
 
 // swiftlint:enable line_length

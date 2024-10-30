@@ -14,6 +14,7 @@ struct DashboardView: View {
     @State private var isShowingAddView = false
     @State private var viewModel: DashboardViewModel
     @State private var isShowingEditView = false
+    @State private var isShowingExportOptionsView = false
     @State private var selectedMaintenanceEvent: MaintenanceEvent?
     
     init(userUID: String?) {
@@ -30,20 +31,24 @@ struct DashboardView: View {
         NavigationStack {
             List {
                 ForEach(viewModel.searchedEvents) { event in
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text(event.title)
                             .font(.title3)
+                            .fontWeight(.bold)
+                        
+                        Text(event.date, formatter: self.eventDateFormat)
+                            .foregroundStyle(.secondary)
                         
                         let vehicleName = viewModel.vehicles.first { $0.id == event.vehicleID }?.name
                         if let vehicleName {
-                            Text("\(vehicleName) on \(event.date, formatter: self.eventDateFormat)",
-                                 comment: "Maintenance list item for a vehicle on a date")
+                            Text("For: \(vehicleName)", comment: "the vehcile name is filled in here")
+                                .foregroundStyle(.secondary)
                         }
                         
                         if !event.notes.isEmpty {
-                            Text(event.notes)
-                                .lineLimit(0)
+                            Text("Notes:")
                                 .foregroundStyle(.secondary)
+                            Text(event.notes)
                         }
                     }
                     .accessibilityElement(children: .combine)
@@ -149,12 +154,34 @@ struct DashboardView: View {
                     }
                 }
             }
+            .toolbar {
+                if !viewModel.events.isEmpty {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            isShowingExportOptionsView = true
+                        } label: {
+                            Image(systemName: SFSymbol.share)
+                        }
+                        .accessibilityShowsLargeContentViewer {
+                            Label {
+                                Text("Export Event", comment: "Label for exporting maintenance events")
+                            } icon: {
+                                Image(systemName: SFSymbol.share)
+                            }
+                        }
+                    }
+                }
+            }
             .task {
                 await viewModel.getMaintenanceEvents()
                 await viewModel.getVehicles()
             }
             .sheet(isPresented: $isShowingAddView) {
                 makeAddMaintenanceView()
+            }
+            .sheet(isPresented: $isShowingExportOptionsView) {
+                ExportOptionsView(dataSource: viewModel.vehiclesWithSortedEventsDict)
+                    .presentationDetents([.medium])
             }
         }
         .onChange(of: scenePhase) { _, newScenePhase in

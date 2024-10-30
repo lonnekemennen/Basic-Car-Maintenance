@@ -14,44 +14,39 @@ struct OdometerView: View {
     @State private var viewModel: OdometerViewModel
 
     init(userUID: String?) {
-        viewModel = OdometerViewModel(userUID: userUID)
+        self.init(viewModel: OdometerViewModel(userUID: userUID))
+    }
+    
+    fileprivate init(viewModel: OdometerViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(viewModel.readings) { reading in
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("\(reading.distance) \(reading.isMetric ? "km" : "mi")")
-                            .font(.title3)
-                        
-                        let vehicleName = viewModel.vehicles.first { $0.id == reading.vehicleID }?.name
-                        if let vehicleName {
-                            Text("For \(vehicleName)")
-                        }
-                        
-                        Text("\(reading.date.formatted(date: .abbreviated, time: .omitted))")
-                    }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button(role: .destructive) {
-                            Task {
-                                await viewModel.deleteReading(reading)
+                    let vehicleName = viewModel.vehicles.first { $0.id == reading.vehicleID }?.name
+                    OdometerRowView(reading: reading, vehicleName: vehicleName)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button(role: .destructive) {
+                                Task {
+                                    await viewModel.deleteReading(reading)
+                                }
+                            } label: {
+                                Image(systemName: SFSymbol.trash)
                             }
-                        } label: {
-                            Image(systemName: SFSymbol.trash)
-                        }
-                        
-                        Button {
-                            viewModel.selectedReading = reading
-                            viewModel.isShowingEditReadingView = true
-                        } label: {
-                            Label {
-                                Text("Edit")
-                            } icon: {
-                                Image(systemName: SFSymbol.pencil)
+                            
+                            Button {
+                                viewModel.selectedReading = reading
+                                viewModel.isShowingEditReadingView = true
+                            } label: {
+                                Label {
+                                    Text("Edit")
+                                } icon: {
+                                    Image(systemName: SFSymbol.pencil)
+                                }
                             }
                         }
-                    }
                 }
                 .listStyle(.inset)
             }
@@ -118,6 +113,48 @@ struct OdometerView: View {
 }
 
 #Preview {
-    OdometerView(userUID: "")
+    let viewModel = OdometerViewModel(userUID: nil)
+    let firstCar = createVehicle(id: "id1", name: "My 1st car")
+    let secondCar = createVehicle(id: "id2", name: "2nd Car")
+    
+    viewModel.vehicles.append(contentsOf: [firstCar, secondCar])
+    
+    let firstReading = createReading(vehicleID: secondCar.id!,
+                                     date: "2024/10/18",
+                                     distance: 20)
+    let secondReading = createReading(vehicleID: firstCar.id!,
+                                     date: "2024/10/15",
+                                     distance: 1000)
+    
+    let thirdReading = createReading(vehicleID: firstCar.id!,
+                                     date: "2024/10/13",
+                                     distance: 10)
+    viewModel.readings.append(contentsOf: [firstReading, secondReading, thirdReading])
+
+    return OdometerView(viewModel: viewModel)
         .environment(ActionService.shared)
+    
+    func createVehicle(id: String, name: String) -> Vehicle {
+        Vehicle(id: id, 
+                userID: nil, 
+                name: name, 
+                make: "", 
+                model: "", 
+                year: nil, 
+                color: nil, 
+                vin: nil, 
+                licensePlateNumber: nil)
+    }
+
+    func createReading(vehicleID: String, date: String, distance: Int) -> OdometerReading {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let firstDate = formatter.date(from: date)!
+        return OdometerReading(id: UUID().uuidString,
+                               userID: "", 
+                               date: firstDate, 
+                               distance: distance, 
+                               isMetric: false, 
+                               vehicleID: vehicleID)
+    }
 }

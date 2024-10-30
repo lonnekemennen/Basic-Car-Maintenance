@@ -17,6 +17,9 @@ struct SettingsView: View {
    
     @ScaledMetric(relativeTo: .largeTitle) var iconDimension = 20.0
     
+    // swiftlint:disable:next line_length
+    @AppStorage(AppStorageKeys.measurementSystem) private var defaultUnitSystem: MeasurementSystem = .userDefault
+    
     @State private var viewModel: SettingsViewModel
     @State private var isShowingAddVehicle = false
     @State private var showDeleteVehicleError = false
@@ -27,6 +30,8 @@ struct SettingsView: View {
     
     @State private var selectedVehicle: Vehicle?
     @State private var isShowingEditVehicleView = false
+    
+    @State private var isShowingVehicleDetailView = false
     
     private let appVersion = "Version \(Bundle.main.versionNumber) (\(Bundle.main.buildNumber))"
     
@@ -90,39 +95,45 @@ struct SettingsView: View {
                 
                 Section {
                     ForEach(viewModel.vehicles) { vehicle in
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("\(vehicle.name)")
-                                .fontWeight(.bold)
-                                .font(.headline)
-                            
-                            Group {
-                                HStack {
-                                    if let year = vehicle.year, !year.isEmpty {
-                                        Text(year)
+                        Button {
+                            selectedVehicle = vehicle
+                            isShowingVehicleDetailView = true
+                        } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("\(vehicle.name)")
+                                    .fontWeight(.bold)
+                                    .font(.headline)
+                                
+                                Group {
+                                    HStack {
+                                        if let year = vehicle.year, !year.isEmpty {
+                                            Text(year)
+                                        }
+                                        
+                                        Text(vehicle.make)
+                                        
+                                        Text(vehicle.model)
                                     }
                                     
-                                    Text(vehicle.make)
+                                    if let licensePlateNumber =
+                                        vehicle.licensePlateNumber,
+                                       !licensePlateNumber.isEmpty {
+                                        Text("Plate: \(licensePlateNumber)")
+                                    }
                                     
-                                    Text(vehicle.model)
+                                    if let vin = vehicle.vin, !vin.isEmpty {
+                                        Text("VIN: \(vin)")
+                                    }
+                                    
+                                    if let color = vehicle.color, !color.isEmpty {
+                                        Text("Color: \(color)")
+                                    } 
                                 }
-                                
-                                if let licensePlateNumber =
-                                    vehicle.licensePlateNumber,
-                                   !licensePlateNumber.isEmpty {
-                                    Text("Plate: \(licensePlateNumber)")
-                                }
-                                
-                                if let vin = vehicle.vin, !vin.isEmpty {
-                                    Text("VIN: \(vin)")
-                                }
-                                
-                                if let color = vehicle.color, !color.isEmpty {
-                                    Text("Color: \(color)")
-                                } 
+                                .font(.callout)
+                                .foregroundStyle(.secondary)
                             }
-                            .font(.callout)
-                            .foregroundStyle(.secondary)
                         }
+                        .buttonStyle(.plain)
                         .swipeActions {
                             Button(role: .destructive) {
                                 Task {
@@ -161,6 +172,18 @@ struct SettingsView: View {
                     }
                 } header: {
                     Text("Vehicles", comment: "Label to display header title.")
+                }
+                
+                Section {
+                    Picker("Preferred System", selection: $defaultUnitSystem) { 
+                        ForEach(MeasurementSystem.allCases) { unit in
+                            Text(unit.title)
+                                .tag(unit)
+                        }
+                    }
+                    .foregroundStyle(.blue)
+                } header: {
+                    Text("Units", comment: "Label to represent the options for measurement units")
                 }
                 
                 Section {
@@ -231,6 +254,9 @@ struct SettingsView: View {
                         Text("Failed To Add Vehicle. Unknown Error.")
                     }
                 }
+            }
+            .navigationDestination(isPresented: $isShowingVehicleDetailView) {
+                VehicleDetailView(selectedVehicle: $selectedVehicle, viewModel: viewModel)
             }
             .sheet(isPresented: $isShowingEditVehicleView) {
                 EditVehicleView(selectedVehicle: $selectedVehicle, viewModel: viewModel)
