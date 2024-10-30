@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "shouldTranslate" : false
     },
     "%@" : {
       "comment" : "Maintenance list item description 'Date' formatted",
@@ -82,7 +82,15 @@
       }
     },
     "^[%lld contributions](inflect: true)" : {
-      "comment" : "the number of contributions by a contributor"
+      "comment" : "the number of contributions by a contributor",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "^[%lld bijdragen](inflect: true)"
+          }
+        }
+      }
     },
     "🦄 Mikaela Caron - Maintainer" : {
       "comment" : "Link to maintainer Github account.",
@@ -2045,10 +2053,25 @@
       }
     },
     "Export" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporteer"
+          }
+        }
+      }
     },
     "Export Event" : {
-      "comment" : "Label for exporting maintenance events"
+      "comment" : "Label for exporting maintenance events",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporteer onderhoudsbeurt"
+          }
+        }
+      }
     },
     "Failed To Add Vehicle" : {
       "localizations" : {
@@ -2713,7 +2736,15 @@
       }
     },
     "For: %@" : {
-      "comment" : "the vehcile name is filled in here"
+      "comment" : "the vehcile name is filled in here",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voor: %@"
+          }
+        }
+      }
     },
     "GitHub Repo" : {
       "comment" : "Link to the Basic Car Maintenance GitHub repo.",
@@ -2805,7 +2836,15 @@
       }
     },
     "Imperial" : {
-      "comment" : "Imperial unit system"
+      "comment" : "Imperial unit system",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empirisch"
+          }
+        }
+      }
     },
     "It's open source and anyone can contribute to it." : {
       "comment" : "Tells the user they can contribute to the codebase.",
@@ -2855,7 +2894,15 @@
       }
     },
     "Key" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleutel"
+          }
+        }
+      }
     },
     "Kilometers" : {
       "localizations" : {
@@ -3190,7 +3237,15 @@
       }
     },
     "Metric" : {
-      "comment" : "Metric unit system"
+      "comment" : "Metric unit system",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metrisch"
+          }
+        }
+      }
     },
     "Mileage: %lld %@" : {
       "localizations" : {
@@ -3198,6 +3253,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Mileage: %1$lld %2$@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbruik: %1$lld %2$@"
           }
         }
       }
@@ -3520,7 +3581,15 @@
       }
     },
     "No Name" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen naam"
+          }
+        }
+      }
     },
     "No results" : {
       "localizations" : {
@@ -3682,7 +3751,14 @@
       }
     },
     "Notes:" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notities:"
+          }
+        }
+      }
     },
     "Odometer" : {
       "localizations" : {
@@ -3959,7 +4035,14 @@
       }
     },
     "Preferred System" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voorkeurssysteem"
+          }
+        }
+      }
     },
     "Preferred units" : {
       "comment" : "Label for units selected when adding an odometer reading",
@@ -4162,7 +4245,14 @@
       }
     },
     "Recorded On: %@" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opgenomen op: %@"
+          }
+        }
+      }
     },
     "Report a Bug" : {
       "comment" : "Link to report a bug",
@@ -4425,10 +4515,24 @@
       }
     },
     "Select a Vehicle" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer een voertuig"
+          }
+        }
+      }
     },
     "Select the vehicle you want to export the maintenance events for:" : {
-
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer het voertuig waarvan je de onderhoudsbeurten wil exporteren:"
+          }
+        }
+      }
     },
     "Settings" : {
       "comment" : "Label to display settings.",
@@ -4520,7 +4624,15 @@
       }
     },
     "Share" : {
-      "comment" : "Share the exported file in the share sheet"
+      "comment" : "Share the exported file in the share sheet",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deel"
+          }
+        }
+      }
     },
     "Sign Out" : {
       "localizations" : {
@@ -5298,7 +5410,15 @@
       }
     },
     "Units" : {
-      "comment" : "Label to represent the options for measurement units"
+      "comment" : "Label to represent the options for measurement units",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eenheden"
+          }
+        }
+      }
     },
     "Update" : {
       "comment" : "Label for submit button on form to update an existing entry",
@@ -5640,7 +5760,15 @@
       }
     },
     "Vehicle Details" : {
-      "comment" : "Label about vehicle details."
+      "comment" : "Label about vehicle details.",
+      "localizations" : {
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voertuigdetails"
+          }
+        }
+      }
     },
     "Vehicle License Plate Number" : {
       "localizations" : {
